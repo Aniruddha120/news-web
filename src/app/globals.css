@@ -7,6 +7,13 @@
   --color-down: #b91c1c;
   --color-flat: #6b7280;
   --color-paper: #fffdf7;
+  --animate-ticker: ticker 45s linear infinite;
+
+  @keyframes ticker {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 body {
