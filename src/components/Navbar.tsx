@@ -4,6 +4,7 @@ import { connection } from "next/server";
 import { getCategories, getProducts } from "@/lib/api";
 import CategoryLinks from "./CategoryLinks";
 import Ticker from "./Ticker";
+import AuthButtons from "./AuthButtons";
 
 export default async function Navbar() {
   const [categories, products] = await Promise.all([getCategories(), getProducts()]);
@@ -21,12 +22,7 @@ export default async function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Link href="/signin" className="rounded-lg border border-black/15 px-3 py-1.5 text-sm">
-            সাইন ইন
-          </Link>
-          <Link href="/signup" className="rounded-lg bg-brand px-3 py-1.5 text-sm text-white">
-            সাইন আপ
-          </Link>
+        <AuthButtons />
         </div>
       </div>
 
