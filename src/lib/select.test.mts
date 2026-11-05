@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { risers, fallers, sortByPrice } from "./select.ts";
+import { risers, fallers, sortByPrice, priceStats } from "./select.ts";
 import type { Product } from "./api";
 
 const p = (name: string, today: number, dir: "up" | "down" | "flat", pct: number) =>
@@ -35,4 +35,14 @@ test("sortByPrice: সংখ্যায় সাজে, মূল list বদ�
     [10, 20, 30, 40, 50, 80],
   );
   assert.equal(list[0].nameBn, "আ");
+});
+
+test("priceStats: বাজারের min/max থেকে সারাংশ", () => {
+  const prod = {
+    markets: [
+      { min: 100, max: 200 },
+      { min: 150, max: 250 },
+    ],
+  } as Product;
+  assert.deepEqual(priceStats(prod), { min: 100, max: 250, avg: 175 });
 });

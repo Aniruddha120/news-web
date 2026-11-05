@@ -15,3 +15,14 @@ export const fallers = (products: Product[], n = 6) =>
 
 export const sortByPrice = (products: Product[], order: "asc" | "desc") =>
   [...products].sort((a, b) => (order === "asc" ? a.today - b.today : b.today - a.today));
+
+export const priceStats = (product: Product) => {
+  const avg =
+    product.markets.reduce((sum, m) => sum + (m.min + m.max) / 2, 0) /
+    product.markets.length;
+  return {
+    min: Math.min(...product.markets.map((m) => m.min)),
+    max: Math.max(...product.markets.map((m) => m.max)),
+    avg: Math.round(avg),
+  };
+};
